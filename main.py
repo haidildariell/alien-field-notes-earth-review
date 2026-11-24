@@ -12,10 +12,17 @@ ENTRY = (
 )
 
 
+def build_entry() -> str:
+    line = ENTRY.strip()
+    if not line or len(line) > 200:
+        raise ValueError("entry must be 1-200 characters")
+    return line
+
+
 def main() -> None:
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
-        f.write(ENTRY)
+        f.write(build_entry())
 
 
 if __name__ == "__main__":
